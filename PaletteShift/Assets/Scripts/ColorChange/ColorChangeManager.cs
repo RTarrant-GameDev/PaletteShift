@@ -15,14 +15,6 @@ public class ColorChangeManager : MonoBehaviour
 
     private Coroutine ColorRoutine;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TriggerColorChange(Color.red);
-        }
-    }
-
     public void TriggerColorChange(Color ColorToChange)
     {
         if (ColorRoutine != null)
