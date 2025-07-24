@@ -100,5 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e69a5a95d5e634489914f6be6850297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newColor: {r: 1, g: 0, b: 0, a: 0}
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  NewColor: {r: 0, g: 0, b: 0, a: 0}
+  DefaultColor: {r: 0, g: 0, b: 0, a: 0}
+  ColorChangeTime: 0
