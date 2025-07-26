@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3119257365379172589}
   - component: {fileID: 5472382074940641981}
   - component: {fileID: 5340578297438515465}
+  - component: {fileID: 4204946380954981814}
+  - component: {fileID: 5290693092274477053}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -190,13 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc49a80f2d0c6b4889a5e4628e9d829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 5
-  JumpForce: 10
-  GroundCheck: {fileID: 6192137215885339444}
-  GroundCheckRadius: 0.2
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  IsGrounded: 0
 --- !u!114 &5340578297438515465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +206,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 0
+--- !u!114 &4204946380954981814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640137204700841888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae023bf7a5f05fb4db49680faf5a514e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpForce: 5
+  GroundCheck: {fileID: 6192137215885339444}
+  GroundCheckRadius: 0.2
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &5290693092274477053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640137204700841888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d32bed7a0b8664d9b90675bc51569a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 5
 --- !u!1 &3998458874091700117
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,15 +23,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "ColorChange",
-                    "type": "Button",
-                    "id": "10bf5312-dffa-4096-a048-f5420a7e08e8",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -153,28 +144,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f7a017bf-97dc-4faf-b89a-8378e385d918",
-                    "path": "<Keyboard>/j",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ColorChange",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9f547042-9436-44ee-a89e-c3d78b171fa2",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ColorChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
