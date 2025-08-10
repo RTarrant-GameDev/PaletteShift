@@ -13,7 +13,7 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.GetComponent<ColorChangeMechanic>().CompareColorWithObstacle(ObstacleColor) == false)
+            if (collision.gameObject.GetComponent<ColorMatchMechanic>().CompareColorWithObstacle(ObstacleColor) == false)
             {
                 EventObserver.RaiseObstacleHit(ObstacleColor, collision.gameObject);
             }
