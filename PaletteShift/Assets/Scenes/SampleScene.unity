@@ -619,63 +619,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthbarSlider: {fileID: 728956140}
---- !u!1001 &1308479618
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 189565647847776639, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_Name
-      value: ColorCollectable
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.285
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.734
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126762389819782600, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e1c8d639dd1dda6419c51f4b4933cf56, type: 3}
 --- !u!1 &1403851155
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +848,18 @@ PrefabInstance:
     - target: {fileID: 1779382458152445520, guid: 8e660859479737246b3719fd50a52740, type: 3}
       propertyPath: m_EdgeRadius
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401345432773716982, guid: 8e660859479737246b3719fd50a52740, type: 3}
+      propertyPath: ObstacleColor.b
+      value: 0.015686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401345432773716982, guid: 8e660859479737246b3719fd50a52740, type: 3}
+      propertyPath: ObstacleColor.g
+      value: 0.92156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401345432773716982, guid: 8e660859479737246b3719fd50a52740, type: 3}
+      propertyPath: ObstacleColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5098611251418098481, guid: 8e660859479737246b3719fd50a52740, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1405,5 +1360,4 @@ SceneRoots:
   - {fileID: 907419128}
   - {fileID: 546967446}
   - {fileID: 1513477128}
-  - {fileID: 1308479618}
   - {fileID: 1555203141}

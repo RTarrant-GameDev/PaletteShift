@@ -17,8 +17,6 @@ public class ColorChangeManager : MonoBehaviour
 
     public void TriggerColorChange(Color ColorToChange)
     {
-        if (ColorRoutine != null)
-            StopCoroutine(ColorRoutine);
         ColorRoutine = StartCoroutine(ChangeColorForDuration(ColorToChange));
     }
     
