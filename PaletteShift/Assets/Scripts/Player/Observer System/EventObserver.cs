@@ -3,9 +3,9 @@ using UnityEngine;
 
 public static class EventObserver
 {
-    public static event Action<Color, GameObject> OnObstacleHit;
+    public static event Action<Color, GameObject, Collision2D> OnObstacleHit;
 
-    public static void RaiseObstacleHit(Color color, GameObject player) {
-        OnObstacleHit?.Invoke(color, player);
+    public static void RaiseObstacleHit(Color color, GameObject player, Collision2D collision) {
+        OnObstacleHit?.Invoke(color, player, collision);
     }
 }

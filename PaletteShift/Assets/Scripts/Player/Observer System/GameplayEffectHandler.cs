@@ -7,7 +7,7 @@ public class GameplayEffectHandler : MonoBehaviour
         EventObserver.OnObstacleHit += HandleObstacleHit;
     }
 
-    private void HandleObstacleHit(Color color, GameObject player) {
+    private void HandleObstacleHit(Color color, GameObject player, Collision2D collision) {
         switch (color) {
             case var _ when color == Color.blue:
                 GameObject.Find("PlayerCharacter").GetComponent<HealthManagementScript>().DamagePlayer(1);
@@ -23,6 +23,20 @@ public class GameplayEffectHandler : MonoBehaviour
 
             case var _ when color == Color.yellow:
                 GameObject.Find("PlayerCharacter").GetComponent<PlayerMovement>().TriggerControlReverse();
+                break;
+
+            case var _ when color == Color.orange:
+                Vector2 dir = (
+                    collision.contacts[0].point -
+                    new Vector2(
+                        GameObject.Find("PlayerCharacter").transform.position.x,
+                        GameObject.Find("PlayerCharacter").transform.position.y
+                    )
+                );
+
+                dir = -dir.normalized;
+
+                GameObject.Find("PlayerCharacter").GetComponent<Rigidbody2D>().AddForce(dir*200);
                 break;
 
             default:
