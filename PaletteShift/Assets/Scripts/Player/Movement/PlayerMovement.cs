@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Vector2 KnockBack;
+    public float KnockBackDelay = 5f;
     public float MoveSpeed = 5f;
     private Rigidbody2D PlayerRB;
 
@@ -22,16 +24,22 @@ public class PlayerMovement : MonoBehaviour
         ReverseControls = false;
     }
 
+    
+    public void ApplyKnockback(Vector2 force)
+    {
+        KnockBack = force;
+    }
+
     public void MovePlayer(Vector2 Input)
     {
-        if (ReverseControls == false)
-        {
-            PlayerRB.linearVelocity = new Vector2(Input.x * MoveSpeed, PlayerRB.linearVelocity.y);
-        }
-        else
-        {
-            PlayerRB.linearVelocity = -new Vector2(Input.x * MoveSpeed, PlayerRB.linearVelocity.y);
-        }
+        float MovementX = ReverseControls ? -Input.x : Input.x;
+
+        PlayerRB.linearVelocity = new Vector2(
+            MovementX * MoveSpeed + KnockBack.x,
+            PlayerRB.linearVelocity.y + KnockBack.y
+        );
+
+        KnockBack = Vector2.Lerp(KnockBack, Vector2.zero, KnockBackDelay * Time.deltaTime);
     }
 
 

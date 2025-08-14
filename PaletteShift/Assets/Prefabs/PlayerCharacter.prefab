@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3337038689812066966, guid: 96e66892e53db60499d1b934fee6bb4c, type: 3}
+  m_Sprite: {fileID: -3337038689812066966, guid: 68702fc9ae9ee374aa03a2c161c6ec87, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ SpriteRenderer:
   m_Size: {x: 0.19, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5153851076906000102
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpForce: 2.5
   GroundCheck: {fileID: 6192137215885339444}
-  GroundCheckRadius: 0.2
+  GroundCheckRadius: 0.05
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -252,7 +252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d32bed7a0b8664d9b90675bc51569a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KnockBackDelay: 5
   MoveSpeed: 5
+  ReverseControls: 0
 --- !u!114 &1577993098424469735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,8 +444,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.16, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5277109909126734525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
