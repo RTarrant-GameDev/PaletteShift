@@ -12,7 +12,6 @@ public class MissionTimerUI : MonoBehaviour
         {
             MissionTimer.TimerInstance.OnTimeUpdated += UpdateUI;
             MissionTimer.TimerInstance.OnTimerStarted += MissionTimer.TimerInstance.StartTimer;
-            MissionTimer.TimerInstance.StartTimer();
         }
     }
 
