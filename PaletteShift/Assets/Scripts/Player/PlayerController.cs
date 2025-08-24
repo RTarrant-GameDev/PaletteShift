@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     private InputAction MoveAction;
     private InputAction JumpAction;
+    private InputAction PauseAction;
     private Vector2 MoveInput;
     public bool IsGrounded;
 
@@ -14,33 +16,60 @@ public class PlayerController : MonoBehaviour {
     private PlayerMovement PlayerMovementComponent;
     private bool JumpPressed;
 
-    private void Awake() {
+    private void Awake()
+    {
         PlayerMovementFSM = GetComponent<FiniteStateMachine>();
         PlayerMovementComponent = GetComponent<PlayerMovement>();
         PlayerJumpComponent = GetComponent<PlayerJumping>();
 
         MoveAction = InputSystem.actions.FindAction("Move");
         JumpAction = InputSystem.actions.FindAction("Jump");
+        PauseAction = InputSystem.actions.FindAction("Pause");
     }
 
-    private void Update() {
+    private void OnEnable()
+    {
+        if (PauseAction != null)
+        {
+            PauseAction.performed += OnPausePerformed;
+            PauseAction.Enable();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (PauseAction != null)
+        {
+            PauseAction.performed -= OnPausePerformed;
+            PauseAction.Disable();
+        }
+    }
+
+
+    private void Update()
+    {
         // Check if grounded
         IsGrounded = PlayerJumpComponent.IsGrounded();
 
-        if (JumpAction != null && JumpAction.WasPressedThisFrame() && IsGrounded) {
+        if (JumpAction != null && JumpAction.WasPressedThisFrame() && IsGrounded)
+        {
             JumpPressed = true;
         }
     }
 
-    private void FixedUpdate() {
-        if (MoveAction != null) {
+    private void FixedUpdate()
+    {
+        if (MoveAction != null)
+        {
             // Move player
             MoveInput = MoveAction.ReadValue<Vector2>();
 
-            if (MoveInput != Vector2.zero) {
+            if (MoveInput != Vector2.zero)
+            {
                 PlayerMovementFSM.ChangeState("Move");
             }
-            else if (MoveInput == Vector2.zero) {
+            else if (MoveInput == Vector2.zero)
+            {
                 PlayerMovementFSM.ChangeState("Idle");
             }
 
@@ -48,13 +77,23 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Jump
-        if (JumpPressed && IsGrounded) {
+        if (JumpPressed && IsGrounded)
+        {
             PlayerJumpComponent.Jump();
         }
-        else if (!IsGrounded) {
+        else if (!IsGrounded)
+        {
             PlayerMovementFSM.ChangeState("Jump");
         }
 
         JumpPressed = false;
+    }
+    
+        // Handles Pause input
+    private void OnPausePerformed(InputAction.CallbackContext context) {
+        if (CanvasManager.CanvasManagerInstance != null)
+        {
+            CanvasManager.CanvasManagerInstance.PauseGame();
+        }
     }
 }
