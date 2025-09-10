@@ -36,4 +36,9 @@ public class AudioManager : MonoBehaviour
         MusicAudioSource.volume = 1 * MasterVolume;
         SFXAudioSource.volume = 1 * MasterVolume;
     }
+
+    public void PlaySFX(AudioClip SFXToPlay) {
+        SFXAudioSource.clip = SFXToPlay;
+        SFXAudioSource.Play();
+    }
 }
