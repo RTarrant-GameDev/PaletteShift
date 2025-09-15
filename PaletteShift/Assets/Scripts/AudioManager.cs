@@ -33,8 +33,8 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         //Set volume for non-master volumes (music, SFX, etc) 
-        MusicAudioSource.volume = 1 * MasterVolume;
-        SFXAudioSource.volume = 1 * MasterVolume;
+        MusicAudioSource.volume *= MasterVolume;
+        SFXAudioSource.volume *= MasterVolume;
     }
 
     public void PlaySFX(AudioClip SFXToPlay) {
