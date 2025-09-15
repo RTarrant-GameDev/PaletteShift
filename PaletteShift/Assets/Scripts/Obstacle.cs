@@ -3,6 +3,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour {
     [Header("Set obstacle color in Inspector")]
     public Color ObstacleColor;
+    [SerializeField] public AudioClip ObstacleSFX;
 
     private void Start() {
         GetComponent<SpriteRenderer>().color = ObstacleColor;

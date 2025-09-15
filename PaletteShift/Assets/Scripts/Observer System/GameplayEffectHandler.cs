@@ -14,6 +14,7 @@ public class GameplayEffectHandler : MonoBehaviour
             case var _ when color == Color.blue:
                 if (ColorMatchFound != true) {
                     player.GetComponent<HealthManagementScript>().DamagePlayer(1);
+                    AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
                     break;
                 }
                 break;
@@ -21,6 +22,7 @@ public class GameplayEffectHandler : MonoBehaviour
             case var _ when color == Color.red:
                 if (ColorMatchFound != true) {
                     Debug.Log("Player dead");
+                    AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
                     break;
                 }
                 break;
@@ -28,6 +30,7 @@ public class GameplayEffectHandler : MonoBehaviour
             case var _ when color == Color.green:
                 if (ColorMatchFound != true) {
                     player.GetComponent<PlayerMovement>().TriggerMoveSpeedChange(1.25f);
+                    AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
                     break;
                 }
                 break;
@@ -35,6 +38,7 @@ public class GameplayEffectHandler : MonoBehaviour
             case var _ when color == Color.yellow:
                 if (ColorMatchFound != true) {
                     player.GetComponent<PlayerMovement>().TriggerControlReverse();
+                    AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
                     break;
                 }
                 break;
@@ -43,6 +47,7 @@ public class GameplayEffectHandler : MonoBehaviour
                 if (ColorMatchFound != true) {
                     // Calculate direction of push
                     Vector2 PushDirection = -((Vector2)obstacle.transform.position - (Vector2)player.transform.position).normalized;
+                    AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
 
                     // Apply KnockBack
                     player.GetComponent<PlayerMovement>().ApplyKnockback(PushDirection * 2.5f);
@@ -66,7 +71,7 @@ public class GameplayEffectHandler : MonoBehaviour
                     ));
                     break;
                 }
-
+                AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
                 break;
 
             default:
