@@ -21,7 +21,7 @@ public class GameplayEffectHandler : MonoBehaviour
 
             case var _ when color == Color.red:
                 if (ColorMatchFound != true) {
-                    Debug.Log("Player dead");
+                    GameSystemManagerScript.GameSystemManagerInstance.EndLevel(false);
                     AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
                     break;
                 }
