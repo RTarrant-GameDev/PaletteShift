@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class HealthManagementScript : MonoBehaviour {
-    private HealthScript HealthModel;
+    public HealthScript HealthModel;
     [SerializeField] private int HealthValue;
     [SerializeField] private HealthUIScript HealthView;
 
