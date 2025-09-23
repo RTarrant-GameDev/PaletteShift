@@ -3,6 +3,6 @@ using UnityEngine;
 public class EndpointScript : MonoBehaviour
 {
     public void EndLevel() {
-        GameSystemManagerScript.GameSystemManagerInstance.EndLevel(true);
+        WinLoseManager.WinLoseManagerInstance.EndLevel(true);
     }
 }
