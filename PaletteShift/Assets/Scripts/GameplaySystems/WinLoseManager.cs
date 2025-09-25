@@ -23,14 +23,22 @@ public class WinLoseManager : MonoBehaviour {
     
     public void EndLevel(bool EndpointReached) {
         if (EndpointReached == true) {
-            Debug.Log("Player has reached endpoint");
             MissionTimer.TimerInstance.StopTimer();
-            float HealthScore = (Player.GetComponent<HealthManagementScript>().HealthModel.CurrentHealth / Player.GetComponent<HealthManagementScript>().HealthModel.MaxHealth) *.6f;
-            float TimeScore = (1.0f - (MissionTimer.TimerInstance.TimePassed / MaxTime)) * .4f;
+            float HealthScore = ((float)Player.GetComponent<HealthManagementScript>().HealthModel.CurrentHealth / (float)Player.GetComponent<HealthManagementScript>().HealthModel.MaxHealth) * .6f;
+            float TimeScore = (1f - (MissionTimer.TimerInstance.TimePassed/MaxTime)) * .4f;
             float FinalScore = MissionScoreCalculatorScript.MissionScoreCalculatorInstance.CalculateScore(HealthScore, TimeScore);
-            Debug.LogFormat("FinalScore: {0}", FinalScore);
+
+            Debug.Log($"Health: {HealthScore}");
+            Debug.Log($"Time: {TimeScore}");
+            Debug.Log($"Final score: {FinalScore}");
+
+            if(FinalScore > 100.0f) {
+                FinalScore = 100.0f;
+            }
+            
+            CanvasManager.CanvasManagerInstance.LevelComplete(Player.GetComponent<HealthManagementScript>().HealthModel.CurrentHealth, MissionTimer.TimerInstance.TimePassed, FinalScore);
         } else {
-            Debug.Log("Game Over");
+            CanvasManager.CanvasManagerInstance.GameOver();
         }
     }
 }

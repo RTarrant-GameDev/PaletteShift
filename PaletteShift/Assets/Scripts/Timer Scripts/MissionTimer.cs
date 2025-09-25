@@ -24,6 +24,7 @@ public class MissionTimer : MonoBehaviour
         }
 
         TimerInstance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
