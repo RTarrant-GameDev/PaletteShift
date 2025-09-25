@@ -3,6 +3,7 @@ using UnityEngine;
 public class MissionScoreCalculatorScript : MonoBehaviour {
     public static MissionScoreCalculatorScript MissionScoreCalculatorInstance {get; private set;}
 
+
     private void Awake() {
         if (MissionScoreCalculatorInstance != null && MissionScoreCalculatorInstance != this) {
             Destroy(this);

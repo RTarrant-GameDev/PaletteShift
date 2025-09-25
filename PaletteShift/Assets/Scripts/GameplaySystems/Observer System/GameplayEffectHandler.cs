@@ -3,6 +3,17 @@ using UnityEngine;
 
 public class GameplayEffectHandler : MonoBehaviour
 {
+    public static GameplayEffectHandler GameplayEffectHandlerInstance {get; private set;}
+
+    private void Awake() {
+        if(GameplayEffectHandlerInstance != null && GameplayEffectHandlerInstance != this) {
+            Destroy(this);
+            return;
+        }
+
+        GameplayEffectHandlerInstance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void OnEnable() {
         EventObserver.OnObstacleHit += HandleObstacleHit;
@@ -82,6 +93,8 @@ public class GameplayEffectHandler : MonoBehaviour
     // Add this coroutine in the same script
     private IEnumerator ReenableCollision(Collider2D col1, Collider2D col2, float delay) {
         yield return new WaitForSeconds(delay);
-        Physics2D.IgnoreCollision(col1, col2, false);
+        if(col1 && col2) {
+            Physics2D.IgnoreCollision(col1, col2, false);
+        }
     }
 }

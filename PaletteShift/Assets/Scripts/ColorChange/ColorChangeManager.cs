@@ -35,11 +35,15 @@ public class ColorChangeManager : MonoBehaviour
         ColorRoutine = StartCoroutine(ChangeColorForDuration(ColorToChange));
         OnColorChange?.Invoke(ColorToChange, ColorChangeTime);
     }
+
+    public void ResetColor() {
+        ColorChangeObject.GetComponent<ColorChangeMechanic>().ChangeColor(DefaultColor);
+    }
     
     private IEnumerator ChangeColorForDuration(Color NewColor)
     {
         ColorChangeObject.GetComponent<ColorChangeMechanic>().ChangeColor(NewColor);
         yield return new WaitForSeconds(ColorChangeTime);
-        ColorChangeObject.GetComponent<ColorChangeMechanic>().ChangeColor(DefaultColor);
+        ResetColor();
     }
 }
