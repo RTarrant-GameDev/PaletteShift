@@ -24,7 +24,6 @@ public class MissionTimer : MonoBehaviour
         }
 
         TimerInstance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -52,6 +51,7 @@ public class MissionTimer : MonoBehaviour
 
         TimePassed += Time.deltaTime;  // respects Time.timeScale
         OnTimeUpdated?.Invoke(TimePassed);
+        Debug.Log("Timer running");
     }
 
     // Start counting from 0

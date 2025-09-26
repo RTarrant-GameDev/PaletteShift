@@ -28,10 +28,6 @@ public class WinLoseManager : MonoBehaviour {
             float TimeScore = (1f - (MissionTimer.TimerInstance.TimePassed/MaxTime)) * .4f;
             float FinalScore = MissionScoreCalculatorScript.MissionScoreCalculatorInstance.CalculateScore(HealthScore, TimeScore);
 
-            Debug.Log($"Health: {HealthScore}");
-            Debug.Log($"Time: {TimeScore}");
-            Debug.Log($"Final score: {FinalScore}");
-
             if(FinalScore > 100.0f) {
                 FinalScore = 100.0f;
             }

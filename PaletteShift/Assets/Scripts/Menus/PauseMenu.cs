@@ -7,4 +7,8 @@ public class PauseMenu : MonoBehaviour
     {
         CanvasManager.CanvasManagerInstance.ResumeGame();
     }
+
+    public void QuitGame() {
+        GameSystemManagerScript.GameSystemManagerInstance.QuitToMainMenu();
+    }
 }
