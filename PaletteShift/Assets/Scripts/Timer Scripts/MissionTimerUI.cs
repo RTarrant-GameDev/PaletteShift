@@ -13,6 +13,8 @@ public class MissionTimerUI : MonoBehaviour
             MissionTimer.TimerInstance.OnTimerStarted += UpdateUIOnStart;
             MissionTimer.TimerInstance.OnTimerStopped += UpdateUIOnStop;
             MissionTimer.TimerInstance.OnTimerReset += UpdateUIOnReset;
+        } else {
+            Debug.Log("Mission timer not found");
         }
     }
 

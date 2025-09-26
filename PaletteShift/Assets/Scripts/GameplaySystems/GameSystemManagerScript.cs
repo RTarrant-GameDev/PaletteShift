@@ -13,7 +13,6 @@ public class GameSystemManagerScript : MonoBehaviour {
         }
 
         GameSystemManagerInstance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     // Kick off essential game systems on Start (StartTimer, etc)
@@ -30,6 +29,7 @@ public class GameSystemManagerScript : MonoBehaviour {
     }
 
     public void QuitToMainMenu() {
-        Debug.Log("Jumping to Main Menu");
+        MissionTimer.TimerInstance.StopTimer();
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
