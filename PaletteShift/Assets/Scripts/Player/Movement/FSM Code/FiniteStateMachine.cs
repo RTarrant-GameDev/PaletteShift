@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEditor.Animations;
 
 public enum PlayerState {
     IdleState,
@@ -11,10 +12,12 @@ public enum PlayerState {
 
 public class FiniteStateMachine : MonoBehaviour {
     public PlayerState CurrentState;
+    public Animator PlayerAnimator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         CurrentState = PlayerState.IdleState;
+        PlayerAnimator = GetComponent<Animator>();
     }
 
 
@@ -22,12 +25,15 @@ public class FiniteStateMachine : MonoBehaviour {
         // To be used for animations
         switch (CurrentState) {
             case PlayerState.IdleState:
+                PlayerAnimator.SetBool("IsRunning", false);
                 break;
 
             case PlayerState.MoveState:
+                PlayerAnimator.SetBool("IsRunning", true);
                 break;
 
             case PlayerState.JumpState:
+                PlayerAnimator.SetBool("IsRunning", false);
                 break;
 
             default:
