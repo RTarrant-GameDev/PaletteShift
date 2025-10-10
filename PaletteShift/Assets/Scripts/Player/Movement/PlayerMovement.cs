@@ -34,6 +34,13 @@ public class PlayerMovement : MonoBehaviour
     {
         float MovementX = ReverseControls ? -Input.x : Input.x;
 
+        
+        if(MovementX > 0) {
+            GetComponent<SpriteRenderer>().flipX = false;
+        } else if (MovementX < 0) {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
         PlayerRB.linearVelocity = new Vector2(
             MovementX * MoveSpeed + KnockBack.x,
             PlayerRB.linearVelocity.y + KnockBack.y
