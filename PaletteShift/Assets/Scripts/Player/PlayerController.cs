@@ -67,6 +67,12 @@ public class PlayerController : MonoBehaviour
             if (MoveInput != Vector2.zero)
             {
                 PlayerMovementFSM.ChangeState("Move");
+
+                if(MoveInput.x > 0) {
+                    GetComponent<SpriteRenderer>().flipX = false;
+                } else if (MoveInput.x < 0) {
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
             }
             else if (MoveInput == Vector2.zero)
             {
