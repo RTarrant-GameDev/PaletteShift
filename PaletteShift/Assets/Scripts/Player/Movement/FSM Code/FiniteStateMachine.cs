@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor.Animations;
 
-public enum PlayerState {
+public enum PlayerState
+{
     IdleState,
     MoveState,
-    JumpState
+    JumpState,
+    FallState
 }
 
 public class FiniteStateMachine : MonoBehaviour {
@@ -26,14 +28,26 @@ public class FiniteStateMachine : MonoBehaviour {
         switch (CurrentState) {
             case PlayerState.IdleState:
                 PlayerAnimator.SetBool("IsRunning", false);
+                PlayerAnimator.SetBool("IsJumping", false);
+                PlayerAnimator.SetBool("IsFalling", false);
                 break;
 
             case PlayerState.MoveState:
                 PlayerAnimator.SetBool("IsRunning", true);
+                PlayerAnimator.SetBool("IsJumping", false);
+                PlayerAnimator.SetBool("IsFalling", false);
                 break;
 
             case PlayerState.JumpState:
                 PlayerAnimator.SetBool("IsRunning", false);
+                PlayerAnimator.SetBool("IsJumping", true);
+                PlayerAnimator.SetBool("IsFalling", false);
+                break;
+
+            case PlayerState.FallState:
+                PlayerAnimator.SetBool("IsRunning", false);
+                PlayerAnimator.SetBool("IsJumping", false);
+                PlayerAnimator.SetBool("IsFalling", true);
                 break;
 
             default:
@@ -53,6 +67,10 @@ public class FiniteStateMachine : MonoBehaviour {
 
             case "Jump":
                 CurrentState = PlayerState.JumpState;
+                break;
+
+            case "Fall":
+                CurrentState = PlayerState.FallState;
                 break;
 
             default:

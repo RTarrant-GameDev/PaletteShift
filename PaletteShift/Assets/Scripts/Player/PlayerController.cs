@@ -79,11 +79,20 @@ public class PlayerController : MonoBehaviour
         // Jump
         if (JumpPressed && IsGrounded)
         {
-            PlayerJumpComponent.Jump();
+            PlayerMovementFSM.ChangeState("Jump");
+            PlayerJumpComponent.Jump(); // Trigger the upward force here
         }
         else if (!IsGrounded)
         {
-            PlayerMovementFSM.ChangeState("Jump");
+            // Check vertical velocity to determine if we're going up or down
+            if (GetComponent<Rigidbody2D>().linearVelocity.y > 0.1f)
+            {
+                PlayerMovementFSM.ChangeState("Jump");
+            }
+            else
+            {
+                PlayerMovementFSM.ChangeState("Fall");
+            }
         }
 
         JumpPressed = false;
