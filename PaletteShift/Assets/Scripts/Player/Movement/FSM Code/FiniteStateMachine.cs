@@ -26,14 +26,17 @@ public class FiniteStateMachine : MonoBehaviour {
         switch (CurrentState) {
             case PlayerState.IdleState:
                 PlayerAnimator.SetBool("IsRunning", false);
+                PlayerAnimator.SetBool("IsJumping", false);
                 break;
 
             case PlayerState.MoveState:
                 PlayerAnimator.SetBool("IsRunning", true);
+                PlayerAnimator.SetBool("IsJumping", false);
                 break;
 
             case PlayerState.JumpState:
                 PlayerAnimator.SetBool("IsRunning", false);
+                PlayerAnimator.SetBool("IsJumping", true);
                 break;
 
             default:
