@@ -1,8 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEditor.Animations;
 
 public enum PlayerState
 {
