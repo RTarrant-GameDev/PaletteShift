@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 5290693092274477053}
   - component: {fileID: 1577993098424469735}
   - component: {fileID: 233923474551560011}
+  - component: {fileID: 3853331919409813098}
   - component: {fileID: 3456833657048089942}
   m_Layer: 0
   m_Name: PlayerCharacter
@@ -283,6 +284,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthValue: 10
   HealthView: {fileID: 0}
+--- !u!114 &3853331919409813098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640137204700841888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0a4d1c1ae1dbb4a9012f46a2a683a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObstacleEffectText: {fileID: 0}
 --- !u!95 &3456833657048089942
 Animator:
   serializedVersion: 7
