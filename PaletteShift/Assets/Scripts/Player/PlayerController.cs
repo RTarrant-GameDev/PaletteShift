@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
     private void OnPausePerformed(InputAction.CallbackContext context) {
         if (CanvasManager.CanvasManagerInstance != null)
         {
-            CanvasManager.CanvasManagerInstance.PauseGame();
+            GameSystemManagerScript.GameSystemManagerInstance.PauseGame();
         }
     }
 }

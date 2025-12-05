@@ -32,9 +32,9 @@ public class WinLoseManager : MonoBehaviour {
                 FinalScore = 100.0f;
             }
             
-            CanvasManager.CanvasManagerInstance.LevelComplete(Player.GetComponent<HealthManagementScript>().HealthModel.CurrentHealth, MissionTimer.TimerInstance.TimePassed, FinalScore);
+            GameSystemManagerScript.GameSystemManagerInstance.LevelCompleted(Player.GetComponent<HealthManagementScript>().HealthModel.CurrentHealth, MissionTimer.TimerInstance.TimePassed, FinalScore);
         } else {
-            CanvasManager.CanvasManagerInstance.GameOver();
+            GameSystemManagerScript.GameSystemManagerInstance.ChangeState(GameState.GameOver);
         }
     }
 }

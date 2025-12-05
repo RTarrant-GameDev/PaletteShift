@@ -7,6 +7,7 @@ public class HealthManagementScript : MonoBehaviour {
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
+        HealthView = CanvasManager.CanvasManagerInstance.GameplayHUD.GetComponent<HealthUIScript>();
         HealthModel = new HealthScript(HealthValue);
         HealthModel.OnHealthChanged += HealthView.SetHealth;
 

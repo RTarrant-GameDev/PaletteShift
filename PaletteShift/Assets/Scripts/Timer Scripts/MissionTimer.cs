@@ -24,25 +24,7 @@ public class MissionTimer : MonoBehaviour
         }
 
         TimerInstance = this;
-    }
-
-    private void Start()
-    {
-        // Subscribe to CanvasManager pause/resume events
-        if (CanvasManager.CanvasManagerInstance != null)
-        {
-            CanvasManager.CanvasManagerInstance.Pause += HandlePause;
-            CanvasManager.CanvasManagerInstance.Resume += HandleResume;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (CanvasManager.CanvasManagerInstance != null)
-        {
-            CanvasManager.CanvasManagerInstance.Pause -= HandlePause;
-            CanvasManager.CanvasManagerInstance.Resume -= HandleResume;
-        }
+        DontDestroyOnLoad(this);
     }
 
     private void Update()
@@ -51,7 +33,6 @@ public class MissionTimer : MonoBehaviour
 
         TimePassed += Time.deltaTime;  // respects Time.timeScale
         OnTimeUpdated?.Invoke(TimePassed);
-        Debug.Log("Timer running");
     }
 
     // Start counting from 0
@@ -63,12 +44,16 @@ public class MissionTimer : MonoBehaviour
         OnTimeUpdated?.Invoke(TimePassed); // update UI immediately
     }
 
+    public void ResumeTimer() {
+        TimerRunning = true;
+        OnTimerStarted?.Invoke();
+    }
+
     // Stop counting
     public void StopTimer()
     {
         TimerRunning = false;
         OnTimerStopped?.Invoke();
-        OnTimeUpdated?.Invoke(TimePassed); // update UI immediately
     }
 
     // Reset without starting
@@ -78,21 +63,5 @@ public class MissionTimer : MonoBehaviour
         TimerRunning = false;
         OnTimerReset?.Invoke();
         OnTimeUpdated?.Invoke(TimePassed); // update UI immediately
-    }
-
-    private void HandlePause()
-    {
-        wasRunningBeforePause = TimerRunning;
-        TimerRunning = false;
-        OnTimeUpdated?.Invoke(TimePassed); // freeze UI at current time
-    }
-
-    private void HandleResume()
-    {
-        if (wasRunningBeforePause)
-        {
-            TimerRunning = true;
-            OnTimeUpdated?.Invoke(TimePassed); // refresh UI immediately
-        }
     }
 }

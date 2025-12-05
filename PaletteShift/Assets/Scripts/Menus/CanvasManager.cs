@@ -5,10 +5,13 @@ public class CanvasManager : MonoBehaviour
 {
 
     public static CanvasManager CanvasManagerInstance { get; private set; }
-    public GameObject PlayerHUD;
-    public GameObject PauseMenu;
-    public GameObject GameOverMenuObj;
-    public GameObject LevelCompleteMenuObj;
+
+    [Header("Canvas references")]
+    public GameObject MainMenuCanvas;
+    public GameObject GameplayHUD;
+    public GameObject PauseMenuCanvas;
+    public GameObject GameOverMenuCanvas;
+    public GameObject LevelCompleteMenuCanvas;
 
     [SerializeField]
     private bool PauseMenuActive;
@@ -24,57 +27,66 @@ public class CanvasManager : MonoBehaviour
         }
 
         CanvasManagerInstance = this;
+        DontDestroyOnLoad(this);
     }
 
-    void Start() {
-        StartGame();
-    }
-
-    // make it so that, when level starts, only HUD is visible to player
-    public void StartGame() {
-        PlayerHUD.SetActive(true);
-        PauseMenu.SetActive(false);
-        GameOverMenuObj.SetActive(false);
-        LevelCompleteMenuObj.SetActive(false);
-
-        SetTimeScale(1.0f);
-    }
-
-    public void PauseGame()
+    private void HideAll()
     {
-        PlayerHUD.SetActive(false);
-        PauseMenu.SetActive(true);
-
-        SetTimeScale(0.0f);
-        Pause?.Invoke(); // fire pause event
+        MainMenuCanvas.SetActive(false);
+        GameplayHUD.SetActive(false);
+        PauseMenuCanvas.SetActive(false);
+        GameOverMenuCanvas.SetActive(false);
+        LevelCompleteMenuCanvas.SetActive(false);
     }
 
-    public void ResumeGame()
-    {
-        PlayerHUD.SetActive(true);
-        PauseMenu.SetActive(false);
 
-        SetTimeScale(1.0f);
-        Resume?.Invoke(); // fire resume event
+    public void ShowMenu() {
+        HideAll();
+        MainMenuCanvas.SetActive(true);
     }
 
-    public void LevelComplete(float Health, float Time, float Score) {
-        LevelCompleteMenuObj.GetComponent<LevelCompleteMenu>().Health = Health;
-        LevelCompleteMenuObj.GetComponent<LevelCompleteMenu>().Time = Time;
-        LevelCompleteMenuObj.GetComponent<LevelCompleteMenu>().Score = Score;
-
-        LevelCompleteMenuObj.SetActive(true);
-        PlayerHUD.SetActive(false);
-        SetTimeScale(0.0f);
+    public void HideMenu() { 
+        MainMenuCanvas.SetActive(false);
     }
 
-    public void GameOver() {
-        GameOverMenuObj.SetActive(true);
-        PlayerHUD.SetActive(false);
-        SetTimeScale(0.0f);
+    public void ShowGameplayHUD() {
+        HideAll();
+        GameplayHUD.SetActive(true);
     }
 
-    public void SetTimeScale(float TimeScale){
-        Time.timeScale = TimeScale;
+    public void HideGameplayHUD() { 
+        GameplayHUD.SetActive(false);
+    }
+
+    public void ShowPauseMenu() {
+        HideAll();
+        PauseMenuCanvas.SetActive(true);
+    }
+
+    public void HidePauseMenu() { 
+        PauseMenuCanvas.SetActive(false);
+    }
+
+    public void ShowGameOverMenu() {
+        HideAll();
+        GameOverMenuCanvas.SetActive(true);
+    }
+
+    public void HideGameOverMenu() { 
+        GameOverMenuCanvas.SetActive(false);
+    }
+
+    public void ShowLevelCompleteMenu(float PlayerHealth, float MissionTime, float MissionScore) {
+        HideAll();
+
+        LevelCompleteMenuCanvas.GetComponent<LevelCompleteMenu>().Health = PlayerHealth;
+        LevelCompleteMenuCanvas.GetComponent<LevelCompleteMenu>().Time = MissionTime;
+        LevelCompleteMenuCanvas.GetComponent<LevelCompleteMenu>().Score = MissionScore;
+
+        LevelCompleteMenuCanvas.SetActive(true);
+    }
+
+    public void HideLevelCompleteMenu() { 
+        LevelCompleteMenuCanvas.SetActive(false);
     }
 }
