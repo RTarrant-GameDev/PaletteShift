@@ -7,26 +7,19 @@ public class ColorChangeUIScript : MonoBehaviour {
     public TextMeshProUGUI ColorTimerText;
     public Image ColorTargetImage;
 
-    void OnEnable()
-    {
-        Debug.Log("UI active");
-        if (ColorChangeManager.ManagerInstance != null)
-        {
-            Debug.Log("Color change manager found");
+    void OnEnable() {
+        if (ColorChangeManager.ManagerInstance != null) {
             ColorChangeManager.ManagerInstance.OnColorChange += HandleColorChange;
         }
 
         SetUIElementVisibility(false); //have UI elements hidden at start
     }
 
-    private void HandleColorChange(Color colorToChange, float colorChangeTime)
-    {
-        Debug.Log("Colour change UI active");
+    private void HandleColorChange(Color colorToChange, float colorChangeTime) {
         StartCoroutine(ColorChangeUIUpdate(colorToChange, colorChangeTime));
     }
 
-    IEnumerator ColorChangeUIUpdate(Color ColorToChange, float ColorChangeTime)
-    {
+    IEnumerator ColorChangeUIUpdate(Color ColorToChange, float ColorChangeTime) {
 
         SetUIElementVisibility(true);
 

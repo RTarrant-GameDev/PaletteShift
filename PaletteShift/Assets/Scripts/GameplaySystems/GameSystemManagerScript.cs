@@ -23,11 +23,13 @@ public class GameSystemManagerScript : MonoBehaviour {
     private float cachedFinalHealth, cachedMissionTime, cachedScore;
 
     private void Awake() {
-        if (GameSystemManagerInstance != null && GameSystemManagerInstance != this)
-        { //if there is already an instance, destroy this instance
+        if (GameSystemManagerInstance != null && GameSystemManagerInstance != this) { //if there is already an instance, destroy this instance
             Destroy(this);
             return;
         }
+
+        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = 60;
 
         GameSystemManagerInstance = this;
         DontDestroyOnLoad(gameObject);
@@ -76,12 +78,14 @@ public class GameSystemManagerScript : MonoBehaviour {
 
             case GameState.GameOver:
                 Time.timeScale = 0f;
+                ColorChangeManager.ManagerInstance.ResetColor();
                 CanvasManager.CanvasManagerInstance.ShowGameOverMenu();
                 MissionTimer.TimerInstance.StopTimer();
                 break;
 
             case GameState.LevelComplete:
                 Time.timeScale = 0f;
+                ColorChangeManager.ManagerInstance.ResetColor();
                 CanvasManager.CanvasManagerInstance.ShowLevelCompleteMenu(cachedFinalHealth, cachedMissionTime, cachedScore);
                 MissionTimer.TimerInstance.StopTimer();
                 break;
@@ -103,6 +107,7 @@ public class GameSystemManagerScript : MonoBehaviour {
                 break;
 
             case GameState.GameOver:
+                
                 CanvasManager.CanvasManagerInstance.HideGameOverMenu();
                 break;
 
@@ -126,16 +131,15 @@ public class GameSystemManagerScript : MonoBehaviour {
 
     public void RestartGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        ChangeState(GameState.Gameplay);
         ColorChangeManager.ManagerInstance.ResetColor();
+        ChangeState(GameState.Gameplay);
         MissionTimer.TimerInstance.StartTimer();
     }
 
     public void QuitToMainMenu() {
-        MissionTimer.TimerInstance.StopTimer();
-        ColorChangeManager.ManagerInstance.ResetColor();
-        ChangeState(GameState.Menu);
         SceneManager.LoadScene("MainMenuScene");
+        ChangeState(GameState.Menu);
+        MissionTimer.TimerInstance.StopTimer();
     }
 
 #endregion

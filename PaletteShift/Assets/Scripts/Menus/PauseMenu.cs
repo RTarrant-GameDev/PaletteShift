@@ -5,7 +5,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     public void ResumeGame()
     {
-        GameSystemManagerScript.GameSystemManagerInstance.RestartGame();
+        GameSystemManagerScript.GameSystemManagerInstance.ResumeGame();
     }
 
     public void QuitGame() {

@@ -17,12 +17,8 @@ public class CanvasManager : MonoBehaviour
     [SerializeField]
     private bool PauseMenuActive;
 
-    public event Action Pause;
-    public event Action Resume;
-
     private void Awake() {
-        if (CanvasManagerInstance != null && CanvasManagerInstance != this)
-        { //if there is already an instance, destroy this instance
+        if (CanvasManagerInstance != null && CanvasManagerInstance != this) { //if there is already an instance, destroy this instance
             Destroy(this);
             return;
         }
@@ -31,18 +27,15 @@ public class CanvasManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void HideAll()
-    {
+    private void HideAll() {
         MainMenuCanvas.SetActive(false);
         GameplayHUD.SetActive(false);
         PauseMenuCanvas.SetActive(false);
@@ -50,13 +43,11 @@ public class CanvasManager : MonoBehaviour
         LevelCompleteMenuCanvas.SetActive(false);
     }
 
-    private void Start()
-    {
+    private void Start() {
         AssignCamera();
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         AssignCamera();
     }
 
@@ -111,9 +102,8 @@ public class CanvasManager : MonoBehaviour
         LevelCompleteMenuCanvas.SetActive(false);
     }
 
-    private void AssignCamera()
-    {
-        // find the new camera
+    private void AssignCamera() {
+        // find new camera and assign to all UI
         Camera cam = Camera.main;
 
         MainMenuCanvas.GetComponent<Canvas>().worldCamera = cam;

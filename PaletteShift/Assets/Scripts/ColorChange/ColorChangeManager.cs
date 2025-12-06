@@ -20,15 +20,12 @@ public class ColorChangeManager : MonoBehaviour
 
     public event Action<Color, float> OnColorChange;
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Awake()
-    {
-        if (ManagerInstance != null && ManagerInstance != this)
-        { //if there is already an instance, destroy this instance
+    private void Awake() {
+        if (ManagerInstance != null && ManagerInstance != this) { //if there is already an instance, destroy this instance
             Destroy(this);
             return;
         }
@@ -36,30 +33,27 @@ public class ColorChangeManager : MonoBehaviour
         ManagerInstance = this; //assuming that there is no pre-existing TimerInstance, make this the current TimerInstance
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         SetPlayer();
     }
 
     public void SetPlayer() {
         if(GameObject.FindWithTag("Player")) {
-            Debug.Log("Player found");
             ColorChangeObject = GameObject.FindWithTag("Player"); 
         }
     }
 
-    public void TriggerColorChange(Color ColorToChange)
-    {
+    public void TriggerColorChange(Color ColorToChange) {
         ColorRoutine = StartCoroutine(ChangeColorForDuration(ColorToChange));
         OnColorChange?.Invoke(ColorToChange, ColorChangeTime);
     }
 
     public void ResetColor() {
         ColorChangeObject.GetComponent<ColorChangeMechanic>().ChangeColor(DefaultColor);
+        StopCoroutine("ChangeColorForDuration");
     }
     
-    private IEnumerator ChangeColorForDuration(Color NewColor)
-    {
+    private IEnumerator ChangeColorForDuration(Color NewColor) {
         ColorChangeObject.GetComponent<ColorChangeMechanic>().ChangeColor(NewColor);
         yield return new WaitForSeconds(ColorChangeTime);
         ResetColor();
