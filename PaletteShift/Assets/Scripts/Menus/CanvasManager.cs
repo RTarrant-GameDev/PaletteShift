@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -30,6 +31,16 @@ public class CanvasManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void HideAll()
     {
         MainMenuCanvas.SetActive(false);
@@ -37,6 +48,16 @@ public class CanvasManager : MonoBehaviour
         PauseMenuCanvas.SetActive(false);
         GameOverMenuCanvas.SetActive(false);
         LevelCompleteMenuCanvas.SetActive(false);
+    }
+
+    private void Start()
+    {
+        AssignCamera();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        AssignCamera();
     }
 
 
@@ -88,5 +109,17 @@ public class CanvasManager : MonoBehaviour
 
     public void HideLevelCompleteMenu() { 
         LevelCompleteMenuCanvas.SetActive(false);
+    }
+
+    private void AssignCamera()
+    {
+        // find the new camera
+        Camera cam = Camera.main;
+
+        MainMenuCanvas.GetComponent<Canvas>().worldCamera = cam;
+        GameplayHUD.GetComponent<Canvas>().worldCamera = cam;
+        PauseMenuCanvas.GetComponent<Canvas>().worldCamera = cam;
+        GameOverMenuCanvas.GetComponent<Canvas>().worldCamera = cam;
+        LevelCompleteMenuCanvas.GetComponent<Canvas>().worldCamera = cam;
     }
 }

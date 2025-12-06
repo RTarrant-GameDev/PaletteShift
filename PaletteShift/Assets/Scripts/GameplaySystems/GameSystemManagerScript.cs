@@ -133,6 +133,8 @@ public class GameSystemManagerScript : MonoBehaviour {
 
     public void QuitToMainMenu() {
         MissionTimer.TimerInstance.StopTimer();
+        ColorChangeManager.ManagerInstance.ResetColor();
+        ChangeState(GameState.Menu);
         SceneManager.LoadScene("MainMenuScene");
     }
 
@@ -142,7 +144,6 @@ public class GameSystemManagerScript : MonoBehaviour {
         cachedFinalHealth = Health;
         cachedMissionTime = Time;
         cachedScore = Score;
-
         ChangeState(GameState.LevelComplete);
     }
 }

@@ -7,10 +7,12 @@ public class ColorChangeUIScript : MonoBehaviour {
     public TextMeshProUGUI ColorTimerText;
     public Image ColorTargetImage;
 
-    void Start()
+    void OnEnable()
     {
+        Debug.Log("UI active");
         if (ColorChangeManager.ManagerInstance != null)
         {
+            Debug.Log("Color change manager found");
             ColorChangeManager.ManagerInstance.OnColorChange += HandleColorChange;
         }
 
@@ -19,6 +21,7 @@ public class ColorChangeUIScript : MonoBehaviour {
 
     private void HandleColorChange(Color colorToChange, float colorChangeTime)
     {
+        Debug.Log("Colour change UI active");
         StartCoroutine(ColorChangeUIUpdate(colorToChange, colorChangeTime));
     }
 

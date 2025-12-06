@@ -45,4 +45,8 @@ public class ObstacleEffectsHUDScript : MonoBehaviour {
     void SetUIElementVisibility(bool ShouldBeActive) {
         ObstacleEffectText.enabled = ShouldBeActive;
     }
+
+    public void ResetEffect() {
+        SetUIElementVisibility(false);
+    }
 }

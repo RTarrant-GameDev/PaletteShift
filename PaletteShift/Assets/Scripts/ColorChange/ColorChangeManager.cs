@@ -1,6 +1,7 @@
-using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ColorChangeManager : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class ColorChangeManager : MonoBehaviour
 
     public event Action<Color, float> OnColorChange;
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     private void Awake()
     {
         if (ManagerInstance != null && ManagerInstance != this)
@@ -28,6 +34,18 @@ public class ColorChangeManager : MonoBehaviour
         }
 
         ManagerInstance = this; //assuming that there is no pre-existing TimerInstance, make this the current TimerInstance
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SetPlayer();
+    }
+
+    public void SetPlayer() {
+        if(GameObject.FindWithTag("Player")) {
+            Debug.Log("Player found");
+            ColorChangeObject = GameObject.FindWithTag("Player"); 
+        }
     }
 
     public void TriggerColorChange(Color ColorToChange)
