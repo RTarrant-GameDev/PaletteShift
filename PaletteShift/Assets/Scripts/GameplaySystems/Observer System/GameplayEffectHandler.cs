@@ -41,7 +41,7 @@ public class GameplayEffectHandler : MonoBehaviour
             case var _ when color == Color.green:
                 if (ColorMatchFound != true) {
                     player.GetComponent<PlayerMovement>().TriggerMoveSpeedChange(1.25f);
-                    player.GetComponent<ObstacleEffectsHUDScript>().DisplayEffectText("Slowdown", Color.green);
+                    CanvasManager.CanvasManagerInstance.GameplayHUD.GetComponent<ObstacleEffectsHUDScript>().DisplayEffectText("Slowdown", Color.green);
                     AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
                     break;
                 }
@@ -50,7 +50,7 @@ public class GameplayEffectHandler : MonoBehaviour
             case var _ when color == Color.yellow:
                 if (ColorMatchFound != true) {
                     player.GetComponent<PlayerMovement>().TriggerControlReverse();
-                    player.GetComponent<ObstacleEffectsHUDScript>().DisplayEffectText("Reverse Movement", Color.yellow);
+                    CanvasManager.CanvasManagerInstance.GameplayHUD.GetComponent<ObstacleEffectsHUDScript>().DisplayEffectText("Reverse Movement", Color.yellow);
                     AudioManager.AudioManagerInstance.PlaySFX(obstacle.GetComponent<Obstacle>().ObstacleSFX);
                     break;
                 }

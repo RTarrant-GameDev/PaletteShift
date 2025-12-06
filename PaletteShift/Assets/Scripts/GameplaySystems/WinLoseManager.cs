@@ -22,6 +22,7 @@ public class WinLoseManager : MonoBehaviour {
     }
     
     public void EndLevel(bool EndpointReached) {
+        CanvasManager.CanvasManagerInstance.gameObject.GetComponentInChildren<ObstacleEffectsHUDScript>().ResetEffect();
         if (EndpointReached == true) {
             MissionTimer.TimerInstance.StopTimer();
             float HealthScore = ((float)Player.GetComponent<HealthManagementScript>().HealthModel.CurrentHealth / (float)Player.GetComponent<HealthManagementScript>().HealthModel.MaxHealth) * .6f;
@@ -32,9 +33,9 @@ public class WinLoseManager : MonoBehaviour {
                 FinalScore = 100.0f;
             }
             
-            CanvasManager.CanvasManagerInstance.LevelComplete(Player.GetComponent<HealthManagementScript>().HealthModel.CurrentHealth, MissionTimer.TimerInstance.TimePassed, FinalScore);
+            GameSystemManagerScript.GameSystemManagerInstance.LevelCompleted(Player.GetComponent<HealthManagementScript>().HealthModel.CurrentHealth, MissionTimer.TimerInstance.TimePassed, FinalScore);
         } else {
-            CanvasManager.CanvasManagerInstance.GameOver();
+            GameSystemManagerScript.GameSystemManagerInstance.ChangeState(GameState.GameOver);
         }
     }
 }
