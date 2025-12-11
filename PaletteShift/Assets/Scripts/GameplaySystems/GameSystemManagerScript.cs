@@ -131,6 +131,8 @@ public class GameSystemManagerScript : MonoBehaviour {
 
     public void RestartGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        EventObserver.TriggerEvent("DestroyCurrentLevel");
+        EventObserver.TriggerEvent("GenerateCurrentLevel");
         ColorChangeManager.ManagerInstance.ResetColor();
         ChangeState(GameState.Gameplay);
         MissionTimer.TimerInstance.StartTimer();
