@@ -24,7 +24,6 @@ public class EventObserver : MonoBehaviour {
 
         EventObserverInstance = this;
         EventObserverInstance.Init();
-        DontDestroyOnLoad(gameObject);
     }
 
     void Init() {

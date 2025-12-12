@@ -131,7 +131,7 @@ public class CanvasManager : MonoBehaviour
 
     IEnumerator TutorialTextDisplay(string TutorialText) {
         ShowTutorialText(TutorialText);
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(7.5f);
         HideTutorialText();
     }
 }

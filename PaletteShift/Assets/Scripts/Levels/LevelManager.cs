@@ -19,7 +19,6 @@ public class LevelManager : MonoBehaviour {
         }
 
         LevelManagerInstance = this;
-        DontDestroyOnLoad(this);
     }
 
     void OnEnable() {
