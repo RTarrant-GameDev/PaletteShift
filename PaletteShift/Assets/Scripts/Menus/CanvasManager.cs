@@ -21,12 +21,12 @@ public class CanvasManager : MonoBehaviour
 
     private void Awake() {
         if (CanvasManagerInstance != null && CanvasManagerInstance != this) { //if there is already an instance, destroy this instance
-            Destroy(this);
+            DestroyImmediate(this);
             return;
         }
 
         CanvasManagerInstance = this;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(CanvasManagerInstance);
     }
 
     private void OnEnable() {

@@ -24,7 +24,7 @@ public class GameSystemManagerScript : MonoBehaviour {
 
     private void Awake() {
         if (GameSystemManagerInstance != null && GameSystemManagerInstance != this) { //if there is already an instance, destroy this instance
-            Destroy(this);
+            DestroyImmediate(this);
             return;
         }
 
@@ -32,7 +32,7 @@ public class GameSystemManagerScript : MonoBehaviour {
         Application.targetFrameRate = 60;
 
         GameSystemManagerInstance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(GameSystemManagerInstance);
     }
 
     // Kick off essential game systems on Start (StartTimer, etc)
@@ -107,7 +107,6 @@ public class GameSystemManagerScript : MonoBehaviour {
                 break;
 
             case GameState.GameOver:
-                
                 CanvasManager.CanvasManagerInstance.HideGameOverMenu();
                 break;
 
@@ -139,6 +138,7 @@ public class GameSystemManagerScript : MonoBehaviour {
     }
 
     public void QuitToMainMenu() {
+        EventObserver.TriggerEvent("DestroyCurrentLevel");
         SceneManager.LoadScene("MainMenuScene");
         ChangeState(GameState.Menu);
         MissionTimer.TimerInstance.StopTimer();

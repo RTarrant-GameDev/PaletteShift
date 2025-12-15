@@ -15,16 +15,14 @@ public class MissionTimer : MonoBehaviour
 
     private bool wasRunningBeforePause;
 
-    private void Awake()
-    {
-        if (TimerInstance != null && TimerInstance != this)
-        {
-            Destroy(this);
+    private void Awake() {
+        if (TimerInstance != null && TimerInstance != this) {
+            DestroyImmediate(this);
             return;
         }
 
         TimerInstance = this;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(TimerInstance);
     }
 
     private void Update()
