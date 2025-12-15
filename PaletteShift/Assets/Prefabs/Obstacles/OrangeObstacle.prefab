@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObstacleColor: {r: 1, g: 0.64705884, b: 0, a: 1}
+  ObstacleSFX: {fileID: 8300000, guid: 4bcb69a43e812194cb42172d75aa93a3, type: 3}
 --- !u!212 &7971763194390532672
 SpriteRenderer:
   m_ObjectHideFlags: 0

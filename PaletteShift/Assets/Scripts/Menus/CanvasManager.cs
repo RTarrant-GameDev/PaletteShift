@@ -1,10 +1,11 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
-
     public static CanvasManager CanvasManagerInstance { get; private set; }
 
     [Header("Canvas references")]
@@ -13,18 +14,19 @@ public class CanvasManager : MonoBehaviour
     public GameObject PauseMenuCanvas;
     public GameObject GameOverMenuCanvas;
     public GameObject LevelCompleteMenuCanvas;
+    public GameObject TutorialTextObj;
 
     [SerializeField]
     private bool PauseMenuActive;
 
     private void Awake() {
         if (CanvasManagerInstance != null && CanvasManagerInstance != this) { //if there is already an instance, destroy this instance
-            Destroy(this);
+            DestroyImmediate(this);
             return;
         }
 
         CanvasManagerInstance = this;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(CanvasManagerInstance);
     }
 
     private void OnEnable() {
@@ -88,6 +90,16 @@ public class CanvasManager : MonoBehaviour
         GameOverMenuCanvas.SetActive(false);
     }
 
+    void ShowTutorialText(string TutorialText) {
+        TutorialTextObj.SetActive(true);
+        TutorialTextObj.GetComponentInChildren<TextMeshProUGUI>().SetText(TutorialText);
+    }
+
+    void HideTutorialText() {
+        TutorialTextObj.GetComponentInChildren<TextMeshProUGUI>().SetText("");
+        TutorialTextObj.SetActive(false);
+    }
+
     public void ShowLevelCompleteMenu(float PlayerHealth, float MissionTime, float MissionScore) {
         HideAll();
 
@@ -111,5 +123,15 @@ public class CanvasManager : MonoBehaviour
         PauseMenuCanvas.GetComponent<Canvas>().worldCamera = cam;
         GameOverMenuCanvas.GetComponent<Canvas>().worldCamera = cam;
         LevelCompleteMenuCanvas.GetComponent<Canvas>().worldCamera = cam;
+    }
+
+    public void DisplayTutorialText(string TutorialText) {
+        StartCoroutine(TutorialTextDisplay(TutorialText));
+    }
+
+    IEnumerator TutorialTextDisplay(string TutorialText) {
+        ShowTutorialText(TutorialText);
+        yield return new WaitForSeconds(7.5f);
+        HideTutorialText();
     }
 }
