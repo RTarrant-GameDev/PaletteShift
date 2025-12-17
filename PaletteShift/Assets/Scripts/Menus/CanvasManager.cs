@@ -14,6 +14,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject PauseMenuCanvas;
     public GameObject GameOverMenuCanvas;
     public GameObject LevelCompleteMenuCanvas;
+    public GameObject LevelSelectionCanvas;
     public GameObject TutorialTextObj;
 
     [SerializeField]
@@ -88,6 +89,14 @@ public class CanvasManager : MonoBehaviour
 
     public void HideGameOverMenu() { 
         GameOverMenuCanvas.SetActive(false);
+    }
+
+    public void ShowLevelSelectMenu() {
+        LevelSelectionCanvas.SetActive(true);
+    }
+
+    public void HideLevelSelectMenu() {
+        LevelSelectionCanvas.SetActive(false);
     }
 
     void ShowTutorialText(string TutorialText) {
