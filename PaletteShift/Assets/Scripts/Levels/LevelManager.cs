@@ -39,14 +39,14 @@ public class LevelManager : MonoBehaviour {
     }
 
     void GenerateLevel() {
-        GameObject newLevel = Instantiate(SelectedLevel.LevelStructurePrefab) as GameObject;
-        newLevel.transform.parent = this.gameObject.transform;
+        NewLevel = Instantiate(SelectedLevel.LevelStructurePrefab) as GameObject;
+        NewLevel.transform.parent = this.gameObject.transform;
         CurrentLevel = SelectedLevel;
     }
 
     void GenerateTutorialLevel() {
-        GameObject newLevel = Instantiate(TutorialLevel.LevelStructurePrefab) as GameObject;
-        newLevel.transform.parent = this.gameObject.transform;
+        NewLevel = Instantiate(TutorialLevel.LevelStructurePrefab) as GameObject;
+        NewLevel.transform.parent = this.gameObject.transform;
         CurrentLevel = TutorialLevel;
     }
 
@@ -68,7 +68,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void GenerateCurrentLevel() {
-        GameObject NewLevel = Instantiate(CurrentLevel.LevelStructurePrefab) as GameObject;
+        NewLevel = Instantiate(CurrentLevel.LevelStructurePrefab) as GameObject;
         NewLevel.transform.parent = this.gameObject.transform;
     }
 
