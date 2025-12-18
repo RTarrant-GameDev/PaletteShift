@@ -7,4 +7,5 @@ public class Level : ScriptableObject
     public int LevelNumber;
     public bool LevelCompleted;
     public bool LevelUnlocked;
+    public Sprite LevelScreenshot;
 }

@@ -15,6 +15,10 @@ public class StartMenu : MonoBehaviour
         EventObserver.TriggerEvent("GenerateTutorialLevel");
     }
 
+    public void LevelSelectFunction() {
+        CanvasManager.CanvasManagerInstance.ShowLevelSelectMenu();
+    }
+
     public void QuitFunction() {
         Application.Quit();
     }

@@ -17,9 +17,6 @@ public class CanvasManager : MonoBehaviour
     public GameObject LevelSelectionCanvas;
     public GameObject TutorialTextObj;
 
-    [SerializeField]
-    private bool PauseMenuActive;
-
     private void Awake() {
         if (CanvasManagerInstance != null && CanvasManagerInstance != this) { //if there is already an instance, destroy this instance
             DestroyImmediate(this);
@@ -92,6 +89,7 @@ public class CanvasManager : MonoBehaviour
     }
 
     public void ShowLevelSelectMenu() {
+        HideAll();
         LevelSelectionCanvas.SetActive(true);
     }
 
@@ -140,7 +138,7 @@ public class CanvasManager : MonoBehaviour
 
     IEnumerator TutorialTextDisplay(string TutorialText) {
         ShowTutorialText(TutorialText);
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(1.5f);
         HideTutorialText();
     }
 }

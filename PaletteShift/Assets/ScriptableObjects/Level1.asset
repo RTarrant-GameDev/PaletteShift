@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e721182d6e0cba48a9d5b340b9a6d5e, type: 3}
-  m_Name: TutorialLevel
+  m_Name: Level1
   m_EditorClassIdentifier: 
-  LevelStructurePrefab: {fileID: 3499244578959906487, guid: 44c339facbb2a8d47a3c645c90c674d9, type: 3}
-  LevelNumber: 0
+  LevelStructurePrefab: {fileID: 3714355723866422665, guid: 21fdb8943d41d844998f660694fe2ed6, type: 3}
+  LevelNumber: 1
   LevelCompleted: 0
   LevelUnlocked: 0
-  LevelScreenshot: {fileID: 21300000, guid: e8a67a712c325964fa2cdb440aab1dad, type: 3}
+  LevelScreenshot: {fileID: 3984603422371254371, guid: 05e9c4baa02845841bde9877681144d6, type: 3}

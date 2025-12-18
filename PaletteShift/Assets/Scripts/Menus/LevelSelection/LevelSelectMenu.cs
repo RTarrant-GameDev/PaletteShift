@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectMenu : MonoBehaviour {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -7,6 +8,7 @@ public class LevelSelectMenu : MonoBehaviour {
     }
 
     public void SelectLevel(Level ChosenLevel) {
+        SceneManager.LoadScene("DemoScene");
         CanvasManager.CanvasManagerInstance.HideLevelSelectMenu();
         GameSystemManagerScript.GameSystemManagerInstance.ChangeState(GameState.Gameplay);
         LevelManager.SetSelectedLevel(ChosenLevel);
