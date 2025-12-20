@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -14,27 +13,17 @@ public class CanvasManager : MonoBehaviour
     public GameObject PauseMenuCanvas;
     public GameObject GameOverMenuCanvas;
     public GameObject LevelCompleteMenuCanvas;
+    public GameObject LevelSelectionCanvas;
     public GameObject TutorialTextObj;
-
-    [SerializeField]
-    private bool PauseMenuActive;
 
     private void Awake() {
         if (CanvasManagerInstance != null && CanvasManagerInstance != this) { //if there is already an instance, destroy this instance
-            DestroyImmediate(this);
+            DestroyImmediate(this.gameObject);
             return;
         }
 
         CanvasManagerInstance = this;
         DontDestroyOnLoad(CanvasManagerInstance);
-    }
-
-    private void OnEnable() {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable() {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void HideAll() {
@@ -46,10 +35,6 @@ public class CanvasManager : MonoBehaviour
     }
 
     private void Start() {
-        AssignCamera();
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         AssignCamera();
     }
 
@@ -90,6 +75,15 @@ public class CanvasManager : MonoBehaviour
         GameOverMenuCanvas.SetActive(false);
     }
 
+    public void ShowLevelSelectMenu() {
+        HideAll();
+        LevelSelectionCanvas.SetActive(true);
+    }
+
+    public void HideLevelSelectMenu() {
+        LevelSelectionCanvas.SetActive(false);
+    }
+
     void ShowTutorialText(string TutorialText) {
         TutorialTextObj.SetActive(true);
         TutorialTextObj.GetComponentInChildren<TextMeshProUGUI>().SetText(TutorialText);
@@ -114,7 +108,7 @@ public class CanvasManager : MonoBehaviour
         LevelCompleteMenuCanvas.SetActive(false);
     }
 
-    private void AssignCamera() {
+    public void AssignCamera() {
         // find new camera and assign to all UI
         Camera cam = Camera.main;
 
@@ -131,7 +125,7 @@ public class CanvasManager : MonoBehaviour
 
     IEnumerator TutorialTextDisplay(string TutorialText) {
         ShowTutorialText(TutorialText);
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(1.5f);
         HideTutorialText();
     }
 }

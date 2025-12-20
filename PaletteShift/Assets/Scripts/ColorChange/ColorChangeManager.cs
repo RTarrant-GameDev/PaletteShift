@@ -50,6 +50,10 @@ public class ColorChangeManager : MonoBehaviour
 
     public void ResetColor() {
         ColorChangeObject.GetComponent<ColorChangeMechanic>().ChangeColor(DefaultColor);
+        StopColorChange();
+    }
+
+    public void StopColorChange() {
         StopCoroutine("ChangeColorForDuration");
     }
     

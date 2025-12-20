@@ -39,28 +39,26 @@ public class LevelManager : MonoBehaviour {
     }
 
     void GenerateLevel() {
-        GameObject newLevel = Instantiate(SelectedLevel.LevelStructurePrefab) as GameObject;
-        newLevel.transform.parent = this.gameObject.transform;
+        NewLevel = Instantiate(SelectedLevel.LevelStructurePrefab) as GameObject;
+        NewLevel.transform.parent = this.gameObject.transform;
         CurrentLevel = SelectedLevel;
     }
 
     void GenerateTutorialLevel() {
-        GameObject newLevel = Instantiate(TutorialLevel.LevelStructurePrefab) as GameObject;
-        newLevel.transform.parent = this.gameObject.transform;
+        NewLevel = Instantiate(TutorialLevel.LevelStructurePrefab) as GameObject;
+        NewLevel.transform.parent = this.gameObject.transform;
         CurrentLevel = TutorialLevel;
     }
 
     void GenerateNextLevel() {
-        if(!NewLevel) {
-            NewLevel = Instantiate(NextLevel.LevelStructurePrefab) as GameObject;
-            NewLevel.transform.parent = this.gameObject.transform;
-        }
+        NewLevel = Instantiate(NextLevel.LevelStructurePrefab) as GameObject;
+        NewLevel.transform.parent = this.gameObject.transform;
         CurrentLevel = NextLevel;
     }
 
     void SetLevelAsComplete() {
         CurrentLevel.LevelCompleted = true;
-        if(CurrentLevel.LevelNumber > 0 && CurrentLevel.LevelNumber < 6) Levels[CurrentLevel.LevelNumber--].LevelUnlocked = true;
+        if(CurrentLevel.LevelNumber > 0 && CurrentLevel.LevelNumber < 6) Levels[CurrentLevel.LevelNumber].LevelUnlocked = true;
 
         foreach(Level level in Levels) {
             if(level.LevelCompleted == false && level.LevelUnlocked == true) NextLevel = level; 
@@ -68,7 +66,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void GenerateCurrentLevel() {
-        GameObject NewLevel = Instantiate(CurrentLevel.LevelStructurePrefab) as GameObject;
+        NewLevel = Instantiate(CurrentLevel.LevelStructurePrefab) as GameObject;
         NewLevel.transform.parent = this.gameObject.transform;
     }
 

@@ -17,7 +17,7 @@ public class MissionTimer : MonoBehaviour
 
     private void Awake() {
         if (TimerInstance != null && TimerInstance != this) {
-            DestroyImmediate(this);
+            DestroyImmediate(this.gameObject);
             return;
         }
 

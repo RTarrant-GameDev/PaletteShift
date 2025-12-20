@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     public void StartFunction() {
-        SceneManager.LoadScene("DemoScene");
+        SceneManager.LoadScene("GameplayScene");
         GameSystemManagerScript.GameSystemManagerInstance.ChangeState(GameState.Gameplay);
         EventObserver.TriggerEvent("GenerateNextLevel");
     }
@@ -13,6 +13,10 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene("TutorialScene");
         GameSystemManagerScript.GameSystemManagerInstance.ChangeState(GameState.Gameplay);
         EventObserver.TriggerEvent("GenerateTutorialLevel");
+    }
+
+    public void LevelSelectFunction() {
+        CanvasManager.CanvasManagerInstance.ShowLevelSelectMenu();
     }
 
     public void QuitFunction() {
