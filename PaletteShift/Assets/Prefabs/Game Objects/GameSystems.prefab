@@ -126,6 +126,11 @@ MonoBehaviour:
   TutorialLevel: {fileID: 11400000, guid: 3d3fe6e5fc0e2b74eae86be1c81d519c, type: 2}
   Levels:
   - {fileID: 11400000, guid: ab46b493b75af654fbd6a8b2e35b9ca8, type: 2}
+  - {fileID: 11400000, guid: 704958dfa2f96fa4e98571a7f3b70fa4, type: 2}
+  - {fileID: 11400000, guid: b34ffe1bb704cf142be221abc8a6630d, type: 2}
+  - {fileID: 11400000, guid: 84d56b54876cdba4087beccd93c9aff5, type: 2}
+  - {fileID: 11400000, guid: 0c4aa191e6d766041ab6dbb47f3647f4, type: 2}
+  - {fileID: 11400000, guid: 910da38d1a1406b4e8974f788a2ec256, type: 2}
   NewLevel: {fileID: 0}
   NextLevel: {fileID: 0}
   CurrentLevel: {fileID: 0}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e721182d6e0cba48a9d5b340b9a6d5e, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
-  LevelStructurePrefab: {fileID: 0}
-  LevelNumber: 0
-  LevelCompleted: 0
-  LevelUnlocked: 0
-  LevelScreenshot: {fileID: 0}
+  LevelStructurePrefab: {fileID: 4696257648701588288, guid: bf1a376f7a99d664293147e5d398d0a0, type: 3}
+  LevelNumber: 3
+  LevelCompleted: 1
+  LevelUnlocked: 1
+  LevelScreenshot: {fileID: 21300000, guid: c89bea44596ea0347b5a546edecc81f2, type: 3}

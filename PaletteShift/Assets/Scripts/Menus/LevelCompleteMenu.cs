@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System.Linq;
+using UnityEngine.UI;
 
 public class LevelCompleteMenu : MonoBehaviour {
 
@@ -10,9 +12,16 @@ public class LevelCompleteMenu : MonoBehaviour {
     public TextMeshProUGUI HealthText;
     public TextMeshProUGUI TimeText;
     public TextMeshProUGUI GradeText;
+    public Button NextLevelButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable() {
+        if (LevelManager.LevelManagerInstance.Levels.Last() != LevelManager.LevelManagerInstance.CurrentLevel) {
+            NextLevelButton.gameObject.SetActive(true);
+        } else {
+            NextLevelButton.gameObject.SetActive(false);
+        }
+
         HealthText.SetText($"Health: {Health}");
 
         int minutes = Mathf.FloorToInt(Time / 60);
@@ -37,6 +46,10 @@ public class LevelCompleteMenu : MonoBehaviour {
         }
 
         GradeText.SetText($"Grade: {LetterGrade}");
+    }
+
+    public void NextLevel() {
+        GameSystemManagerScript.GameSystemManagerInstance.NextLevel();
     }
 
     public void RestartFunction(){

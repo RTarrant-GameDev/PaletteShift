@@ -8,7 +8,7 @@ public class LevelSelectMenu : MonoBehaviour {
     }
 
     public void SelectLevel(Level ChosenLevel) {
-        SceneManager.LoadScene("DemoScene");
+        SceneManager.LoadScene("GameplayScene");
         CanvasManager.CanvasManagerInstance.HideLevelSelectMenu();
         GameSystemManagerScript.GameSystemManagerInstance.ChangeState(GameState.Gameplay);
         LevelManager.SetSelectedLevel(ChosenLevel);

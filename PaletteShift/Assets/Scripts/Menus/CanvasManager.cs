@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -19,20 +18,12 @@ public class CanvasManager : MonoBehaviour
 
     private void Awake() {
         if (CanvasManagerInstance != null && CanvasManagerInstance != this) { //if there is already an instance, destroy this instance
-            DestroyImmediate(this);
+            DestroyImmediate(this.gameObject);
             return;
         }
 
         CanvasManagerInstance = this;
         DontDestroyOnLoad(CanvasManagerInstance);
-    }
-
-    private void OnEnable() {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable() {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void HideAll() {
@@ -44,10 +35,6 @@ public class CanvasManager : MonoBehaviour
     }
 
     private void Start() {
-        AssignCamera();
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         AssignCamera();
     }
 
@@ -121,7 +108,7 @@ public class CanvasManager : MonoBehaviour
         LevelCompleteMenuCanvas.SetActive(false);
     }
 
-    private void AssignCamera() {
+    public void AssignCamera() {
         // find new camera and assign to all UI
         Camera cam = Camera.main;
 

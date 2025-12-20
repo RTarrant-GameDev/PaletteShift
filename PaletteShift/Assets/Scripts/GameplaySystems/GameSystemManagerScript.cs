@@ -24,7 +24,7 @@ public class GameSystemManagerScript : MonoBehaviour {
 
     private void Awake() {
         if (GameSystemManagerInstance != null && GameSystemManagerInstance != this) { //if there is already an instance, destroy this instance
-            DestroyImmediate(this);
+            DestroyImmediate(this.gameObject);
             return;
         }
 
@@ -54,20 +54,21 @@ public class GameSystemManagerScript : MonoBehaviour {
     private void EnterState(GameState stateToEnter) {
         switch (stateToEnter) {
             case GameState.Menu:
+                CanvasManager.CanvasManagerInstance.AssignCamera();
                 Time.timeScale = 1f;
+                MissionTimer.TimerInstance.StopTimer();
                 MissionTimer.TimerInstance.ResetTimer();
                 CanvasManager.CanvasManagerInstance.ShowMenu();
                 break;
 
             case GameState.Gameplay:
+                CanvasManager.CanvasManagerInstance.AssignCamera();
                 Time.timeScale = 1f;
                 CanvasManager.CanvasManagerInstance.ShowGameplayHUD();
-
-                if(PreviousState == GameState.Menu)
-                    MissionTimer.TimerInstance.StartTimer();
-                else if (PreviousState == GameState.Paused) 
+                if (PreviousState == GameState.Paused) 
                     MissionTimer.TimerInstance.ResumeTimer();
-
+                else 
+                    MissionTimer.TimerInstance.StartTimer();
                 break;
 
             case GameState.Paused:
@@ -78,14 +79,12 @@ public class GameSystemManagerScript : MonoBehaviour {
 
             case GameState.GameOver:
                 Time.timeScale = 0f;
-                ColorChangeManager.ManagerInstance.ResetColor();
                 CanvasManager.CanvasManagerInstance.ShowGameOverMenu();
                 MissionTimer.TimerInstance.StopTimer();
                 break;
 
             case GameState.LevelComplete:
                 Time.timeScale = 0f;
-                ColorChangeManager.ManagerInstance.ResetColor();
                 CanvasManager.CanvasManagerInstance.ShowLevelCompleteMenu(cachedFinalHealth, cachedMissionTime, cachedScore);
                 MissionTimer.TimerInstance.StopTimer();
                 break;
@@ -128,20 +127,30 @@ public class GameSystemManagerScript : MonoBehaviour {
         ChangeState(GameState.Gameplay);
     }
 
+    public void NextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ColorChangeManager.ManagerInstance.StopAllCoroutines();
+        ColorChangeManager.ManagerInstance.ResetColor();
+        EventObserver.TriggerEvent("DestroyCurrentLevel");
+        EventObserver.TriggerEvent("GenerateNextLevel");
+        ChangeState(GameState.Gameplay);
+    }
+
     public void RestartGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ColorChangeManager.ManagerInstance.StopAllCoroutines();
+        ColorChangeManager.ManagerInstance.ResetColor();
         EventObserver.TriggerEvent("DestroyCurrentLevel");
         EventObserver.TriggerEvent("GenerateCurrentLevel");
-        ColorChangeManager.ManagerInstance.ResetColor();
         ChangeState(GameState.Gameplay);
-        MissionTimer.TimerInstance.StartTimer();
     }
 
     public void QuitToMainMenu() {
         EventObserver.TriggerEvent("DestroyCurrentLevel");
+        ColorChangeManager.ManagerInstance.StopAllCoroutines();
+        ColorChangeManager.ManagerInstance.ResetColor();
         SceneManager.LoadScene("MainMenuScene");
         ChangeState(GameState.Menu);
-        MissionTimer.TimerInstance.StopTimer();
     }
 
 #endregion
@@ -150,6 +159,7 @@ public class GameSystemManagerScript : MonoBehaviour {
         cachedFinalHealth = Health;
         cachedMissionTime = Time;
         cachedScore = Score;
+        EventObserver.TriggerEvent("SetLevelAsComplete");
         ChangeState(GameState.LevelComplete);
     }
 }
