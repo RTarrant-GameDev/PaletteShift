@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelStructurePrefab: {fileID: 7886214170768653346, guid: 8788f8ede34ff7e4aa5f356c15cbd67d, type: 3}
   LevelNumber: 2
-  LevelCompleted: 1
-  LevelUnlocked: 1
+  LevelCompleted: 0
+  LevelUnlocked: 0
   LevelScreenshot: {fileID: 21300000, guid: f889cf0f8acea244581623fa24bfc344, type: 3}

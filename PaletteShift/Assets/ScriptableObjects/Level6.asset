@@ -15,5 +15,5 @@ MonoBehaviour:
   LevelStructurePrefab: {fileID: 5369682232904597734, guid: be9a13d417ca0d041a381029a4f1a5eb, type: 3}
   LevelNumber: 6
   LevelCompleted: 0
-  LevelUnlocked: 1
+  LevelUnlocked: 0
   LevelScreenshot: {fileID: 2475423460416897197, guid: 1b20972a8ba3b5a4a9cb56a2a12b0fc8, type: 3}

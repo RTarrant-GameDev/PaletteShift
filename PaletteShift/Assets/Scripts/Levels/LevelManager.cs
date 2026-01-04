@@ -21,14 +21,14 @@ public class LevelManager : MonoBehaviour {
         LevelManagerInstance = this;
     }
 
-    void OnEnable() {
+    void Start() {
         EventObserver.StartListening("GenerateLevel", GenerateLevel);
         EventObserver.StartListening("GenerateNextLevel", GenerateNextLevel);
         EventObserver.StartListening("GenerateTutorialLevel", GenerateTutorialLevel);
         EventObserver.StartListening("SetLevelAsComplete", SetLevelAsComplete);
         EventObserver.StartListening("GenerateCurrentLevel", GenerateCurrentLevel);
         EventObserver.StartListening("DestroyCurrentLevel", DestroyCurrentLevel);
-
+        
         foreach(Level level in Levels) {
             if(level.LevelCompleted == false && level.LevelUnlocked == true) NextLevel = level;
         }
@@ -72,5 +72,15 @@ public class LevelManager : MonoBehaviour {
 
     void DestroyCurrentLevel() {
         Destroy(this.transform.GetChild(0).gameObject);
+    }
+
+    void OnDestroy()
+    {
+        EventObserver.StopListening("GenerateLevel", GenerateLevel);
+        EventObserver.StopListening("GenerateNextLevel", GenerateNextLevel);
+        EventObserver.StopListening("GenerateTutorialLevel", GenerateTutorialLevel);
+        EventObserver.StopListening("SetLevelAsComplete", SetLevelAsComplete);
+        EventObserver.StopListening("GenerateCurrentLevel", GenerateCurrentLevel);
+        EventObserver.StopListening("DestroyCurrentLevel", DestroyCurrentLevel);
     }
 }
